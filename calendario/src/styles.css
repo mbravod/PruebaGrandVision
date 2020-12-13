@@ -31,6 +31,7 @@ body {
 .card {
     min-width: 130px !important;
     max-width: 200px !important;
+    /* max-height: 163px; */
 }
 
 .mat-card {
@@ -53,4 +54,26 @@ body {
 .pickColor {
     width: 150px;
     height: 40px;
+}
+
+.ancho80 {
+    width: 80%;
+}
+
+.github-picker {
+    margin-left: 45px !important;
+    margin-bottom: 20px !important;
+}
+
+.font-size-card {
+    font-size: 11px;
+}
+
+.scrollable {
+    overflow: auto;
+    /* box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    top: 0; */
+    max-height: 90px;
 }

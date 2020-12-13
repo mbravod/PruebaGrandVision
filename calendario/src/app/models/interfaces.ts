@@ -2,11 +2,13 @@ export interface IDia {
     mes: string;
     nombre: string;
     numero: string;
-    recodatorio?: {
+    recordatorio?: {
         title: string;
         color: string;
         ciudad: string;
+        pais: string;
         hora: string;
+        clima: string;
     }[];
 }
 

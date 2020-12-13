@@ -17,15 +17,22 @@
                     <p [ngClass]="{'text-weekend': item.nombre == diasSemana[0] || item.nombre == diasSemana[6]}" class="text-left">{{diasXMes[i].numero}}</p>
                 </mat-card-title>
             </mat-card-header>
-            <mat-card-content></mat-card-content>
+            <mat-card-content class="scrollable">
+                <div class="container text-center">
+                    <app-card-reminder matTooltip="Click for edit" (itemABorrar)="borrarRecordatorio(i, $event)" *ngFor="let remind of item.recordatorio" [item]="remind" [titulo]="remind.title" [hora]="remind.hora" [ciudad]="remind.ciudad" [clima]="remind.clima" [color]="remind.color"></app-card-reminder>
+                </div>
+            </mat-card-content>
             <mat-card-actions align="end" *ngIf="diasXMes[i].mes != mesesYear[11]">
                 <button mat-mini-fab color="primary" disabled>
                         <mat-icon>add</mat-icon>
                 </button>
             </mat-card-actions>
             <mat-card-actions align="end" *ngIf="diasXMes[i].mes == mesesYear[11]">
-                <button mat-mini-fab color="primary" (click)="openDialog()">
+                <button mat-mini-fab color="primary" (click)="openDialog(i)">
                         <mat-icon>add</mat-icon>
+                </button>
+                <button mat-mini-fab color="warn" class="ml-1" *ngIf="diasXMes[i].recordatorio.length > 0" (click)="borrarRecordatorios(i)">
+                    <mat-icon>delete_sweep</mat-icon>
                 </button>
             </mat-card-actions>
         </mat-card>

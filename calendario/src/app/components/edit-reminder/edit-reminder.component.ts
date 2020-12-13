@@ -6,11 +6,14 @@ import { ICiudad, IHoras } from 'src/app/models/interfaces';
 import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({
-  selector: 'app-recordatorio',
-  templateUrl: './recordatorio.component.html',
-  styleUrls: ['./recordatorio.component.css']
+  selector: 'app-edit-reminder',
+  templateUrl: './edit-reminder.component.html',
+  styleUrls: ['./edit-reminder.component.css']
 })
-export class RecordatorioComponent {
+export class EditReminderComponent implements OnInit {
+
+  detailReminderForm: FormGroup;
+  deshabilitado: boolean = false;
 
   ciudades: ICiudad[] = [
     {value: 'nl', viewValue: 'Schiphol'},
@@ -46,50 +49,46 @@ export class RecordatorioComponent {
     {value: '18:30', viewValue: '18:30'}
   ];
 
-  recordatorioForm: FormGroup;
   datos: any = {};
 
-  constructor(private dialogRef: MatDialogRef<RecordatorioComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: {numero: number},
-              private weatherService: WeatherService) 
-              {
-               }
+  constructor(private dialogRef: MatDialogRef<EditReminderComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: {reminder: any, indice: number},
+              private weatherService: WeatherService) { }
 
   ngOnInit(): void {
-    this.recordatorioForm = new FormGroup({
-      titulo: new FormControl('', [Validators.required]),
-      city: new FormControl('', [Validators.required]),
-      hour: new FormControl('', [Validators.required])
+    this.detailReminderForm = new FormGroup({
+      titulo: new FormControl({value: this.data.reminder.title, disabled: this.deshabilitado}, [Validators.required]),
+      city: new FormControl({value: this.data.reminder.pais, disabled: this.deshabilitado}, [Validators.required]),
+      hour: new FormControl({value: this.data.reminder.hora, disabled: this.deshabilitado}, [Validators.required])
     });
   }
 
   public hasError = (controlName: string, errorName: string) => {
-    return this.recordatorioForm.controls[controlName].hasError(errorName);
+    return this.detailReminderForm.controls[controlName].hasError(errorName);
+  }
+
+  handleChange($event: ColorEvent) {
+    this.datos.color = $event.color.hex;
   }
 
   pasandoData(ciudad: string) {
     this.datos.ciudad = ciudad;
-    this.weatherService.getWeather(ciudad, this.recordatorioForm.get('city').value).subscribe(info => {
+    this.weatherService.getWeather(ciudad, this.detailReminderForm.get('city').value).subscribe(info => {
       const AUX = info['weather'][0].main;
       this.datos.clima = AUX;
     });
   }
 
-  aceptar() {
-    this.datos.numero = this.data.numero;
-    this.datos.titulo = this.recordatorioForm.get('titulo').value;
-    this.datos.pais = this.recordatorioForm.get('city').value;
-    this.datos.hora = this.recordatorioForm.get('hour').value;
+  editar() {
+    this.datos.numero = this.data.indice;
+    this.datos.titulo = this.detailReminderForm.get('titulo').value;
+    this.datos.pais = this.detailReminderForm.get('city').value;
+    this.datos.hora = this.detailReminderForm.get('hour').value;
     this.dialogRef.close(this.datos);
   }
 
-  cancelar() {
-    this.dialogRef.close();
-  }
-
-  handleChange($event: ColorEvent) {
-    console.log($event.color.hex);
-    this.datos.color = $event.color.hex;
+  borrar() {
+    this.dialogRef.close(1);
   }
 
 }

@@ -10,16 +10,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ColorGithubModule } from 'ngx-color/github';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import { DaygridComponent } from './components/daygrid/daygrid.component';
 import { RecordatorioComponent } from './components/recordatorio/recordatorio.component';
+import { CardReminderComponent } from './components/card-reminder/card-reminder.component';
+import { EditReminderComponent } from './components/edit-reminder/edit-reminder.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DaygridComponent,
-    RecordatorioComponent
+    RecordatorioComponent,
+    CardReminderComponent,
+    EditReminderComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +40,10 @@ import { RecordatorioComponent } from './components/recordatorio/recordatorio.co
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    ColorGithubModule,
+    HttpClientModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

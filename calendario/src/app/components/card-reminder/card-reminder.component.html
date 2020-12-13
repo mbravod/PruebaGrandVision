@@ -1,0 +1,24 @@
+<mat-card class="my-2 puntero" [ngStyle]="{'background-color': color}">
+    <div class="container" (click)="openDialog(item)">
+        <div class="row">
+            <div class="col text-left">
+                <p class="font-size-card p-mb-0"><strong>Desc.:</strong> {{titulo | slice:0:10}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-left">
+                <p class="font-size-card p-mb-0"><strong>Time:</strong> {{hora}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-left">
+                <p class="font-size-card p-mb-0"><strong>Place:</strong> {{ciudad}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-left">
+                <p class="font-size-card p-mb-0"><strong>Wheather:</strong> {{clima}}</p>
+            </div>
+        </div>
+    </div>
+</mat-card>

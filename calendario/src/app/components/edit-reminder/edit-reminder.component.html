@@ -1,6 +1,6 @@
-<h1 mat-dialog-title>Crear recordatorio:</h1>
+<h1 mat-dialog-title>Detalle recordatorio:</h1>
 <div mat-dialog-content>
-    <form [formGroup]="recordatorioForm" autocomplete="off" novalidate>
+    <form [formGroup]="detailReminderForm" autocomplete="off" novalidate>
         <div class="row">
             <div class="col text-center">
                 <mat-form-field class="ancho80">
@@ -41,6 +41,6 @@
     </form>
 </div>
 <div mat-dialog-actions align="center">
-    <button mat-raised-button color="primary" [disabled]="!recordatorioForm.valid" (click)="aceptar()">CREAR</button>
-    <button mat-raised-button class="btn-light" (click)="cancelar()">CANCELAR</button>
+    <button mat-raised-button color="primary" (click)="editar()">EDITAR</button>
+    <button mat-raised-button class="btn-light" (click)="borrar()">BORRAR</button>
 </div>
