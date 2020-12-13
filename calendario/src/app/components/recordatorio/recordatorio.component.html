@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Crear recordatorio:</h1>
+<div mat-dialog-content>
+    <form [formGroup]="recordatorioForm" autocomplete="off" novalidate>
+        <div class="row">
+            <div class="col text-center">
+                <mat-form-field>
+                    <mat-label>Titulo del recordatorio:</mat-label>
+                    <input matInput formControlName="titulo" type="text" required>
+                    <mat-error *ngIf="hasError('titulo', 'required')">Este campo es <strong>obligatorio</strong></mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <mat-form-field>
+                    <mat-label>Lugar (ciudad):</mat-label>
+                    <mat-select formControlName="city" required>
+                        <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.value">{{ciudad.viewValue}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="hasError('city', 'required')">Este campo es <strong>obligatorio</strong>></mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <mat-form-field>
+                    <mat-label>Hora:</mat-label>
+                    <mat-select formControlName="hour" required>
+                        <mat-option *ngFor="let hora of horarios" [value]="hora.value">{{hora.viewValue}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="hasError('hour', 'required')">Este campo es <strong>obligatorio</strong></mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <mat-form-field>
+                    <mat-label>Color:</mat-label>
+                    <mat-select formControlName="colores" required>
+                        <mat-option *ngFor="let color of colors" [value]="color">
+                            <div [ngStyle]="{'background': color}" class="pickColor"></div>
+                            {{color}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="hasError('colores', 'required')">Este campo es <strong>obligatorio</strong></mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="aceptar()">CREAR</button>
+    <button mat-raised-button class="btn-light" (click)="cancelar()">CANCELAR</button>
+</div>
