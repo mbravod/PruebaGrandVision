@@ -13,8 +13,8 @@ export class DaygridComponent implements OnInit {
   fechaActual = new Date();
 
   semanasXMes: any[] = [];
-  diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-  mesesYear = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+  diasSemana = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  mesesYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augost', 'September', 'October', 'November', 'December'];
   diasXMes: IDia[] = [
     {mes: this.mesesYear[10], nombre: this.diasSemana[0], numero: new Date(this.fechaActual.getFullYear(), this.fechaActual.getMonth(), -1).getDate().toString()}, 
     {mes: this.mesesYear[10], nombre: this.diasSemana[1], numero: new Date(this.fechaActual.getFullYear(), this.fechaActual.getMonth(), 0).getDate().toString()}
@@ -56,19 +56,16 @@ export class DaygridComponent implements OnInit {
       clima: clima
     });
 
-    if (this.diasXMes[numero].recordatorio.length > 1) {
-      this.diasXMes[numero].recordatorio.sort((a, b) => {
-        if (a.hora > b.hora) {
-          return 1;
-        } else if (a.hora < b.hora) {
-          return -1;
-        } else {
-          return 0;
-        }
-      });
-    } else {
-      return;
-    }
+    this.diasXMes[numero].recordatorio.sort((a, b) => {
+      if (a.hora > b.hora) {
+        return 1;
+      }
+      if (a.hora < b.hora) {
+        return -1;
+      } 
+      
+      return 0;
+    });
   }
 
   borrarRecordatorios(numero: number) {
@@ -244,6 +241,6 @@ export class DaygridComponent implements OnInit {
     }
   }
 
-
+  
 
 }

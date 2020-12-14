@@ -35,4 +35,5 @@ export class ConfigService {
   get apiUrl() {
     return this._data.apiUrl;
   }
+
 }
