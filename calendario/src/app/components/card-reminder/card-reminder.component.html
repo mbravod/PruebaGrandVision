@@ -1,5 +1,5 @@
 <mat-card class="my-2 puntero" [ngStyle]="{'background-color': color}">
-    <div class="container" (click)="openDialog(item)">
+    <div class="container" (click)="openDialog(item, numero)">
         <div class="row">
             <div class="col text-left">
                 <p class="font-size-card p-mb-0"><strong>Desc.:</strong> {{titulo | slice:0:10}}</p>
